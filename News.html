@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader&display=swap" rel="stylesheet">
+    <link rel="icon" href="circle.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <title>POLAECO: News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            font-family: 'Newsreader', serif;
+        }
+
+        @font-face {
+            font-family: 'Baron Neue';
+            src: url('FONTS/Baron Neue Black Italic.otf') format('opentype');
+            font-weight: 900;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Baron Neue';
+            src: url('FONTS/Baron Neue Black.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Bebas';
+            src: url('FONTS/Bebas-Regular.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Baron Neue';
+            src: url('FONTS/Baron Neue Bold Italic.otf') format('opentype');
+            font-weight: bold;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Baron Neue';
+            src: url('FONTS/Baron Neue Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Baron Neue';
+            src: url('FONTS/Baron Neue Italic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Baron Neue';
+            src: url('FONTS/Baron Neue.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(249, 249, 249);
+            height: 85px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #ff7b1d;
+            font-family: 'Baron Neue', "Newsreader", serif;
+            font-size: 32px;
+            padding: 10px 20px;
+        }
+
+        .logo img {
+            height: 78px;
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            padding: 5px 15px;
+            font-family: 'Bebas', 'Baron Neue', "Newsreader", serif;
+        }
+
+        .navbar a:hover {
+            color: #ff7b1d;
+            font-weight: 900;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: black;
+            margin: 3px 0;
+        }
+
+        @media (max-width: 800px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -250px;
+                width: 250px;
+                height: 100vh;
+                background-color: rgba(37, 33, 31, 0.851);
+                flex-direction: column;
+                padding-top: 60px;
+                transition: right 0.3s ease-in-out;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                color: white;
+                font-size: 25px;
+                padding: 15px;
+                text-align: left;
+                width: 100%;
+                display: block;
+                font-family: 'Baron Neue', "Newsreader", serif;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                z-index: 1500;
+            }
+
+            .hamburger div {
+                width: 30px;
+                height: 3.3px;
+                background-color: #ff7b1d;
+                margin: 4px 0;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .logo img {
+                height: 60px;
+            }
+        }
+
+        .news-intro {
+            max-width: 1200px;
+            margin: 100px auto 20px;
+            padding: 0 20px;
+            text-align: center;
+            margin-top: 115px;
+        }
+
+        .news-intro h1 {
+            font-family: 'Bebas', sans-serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #ff7b1d;
+            margin-bottom: 10px;
+        }
+
+        .news-intro p {
+            font-family: 'Quicksand', serif;
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .leadership-section {
+            margin: 20px auto 50px;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Bebas', 'Baron Neue', 'Newsreader', serif;
+            font-size: 40px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 1px;
+            opacity: 1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 1px;
+            max-width: 500px;
+            max-height: 80vh; /* Limit height to 80% of viewport */
+            overflow-y: auto; /* Enable scrolling if content overflows */
+            text-align: left;
+            margin: 20px; /* Add margin for small screens */
+        }
+
+        .modal-content h2 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff7b1d;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #ff7b1d;
+            cursor: pointer;
+        }
+
+        @media (max-width: 800px) {
+            .news-intro {
+                margin: 80px auto 20px;
+                padding: 0 15px;
+                margin-top: 100px;
+            }
+
+            .news-intro h1 {
+                font-size: 2rem;
+            }
+
+            .news-intro p {
+                font-size: 1rem;
+            }
+
+            .leadership-section {
+                grid-template-columns: 1fr;
+                margin: 20px auto 50px;
+                padding: 10px;
+            }
+
+            .gallery-item h2 {
+                font-size: 30px;
+            }
+
+            .modal-content {
+                max-width: 90%;
+                max-height: 85vh; /* Slightly more height on smaller screens */
+                padding: 15px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.5rem; /* Smaller heading on small screens */
+            }
+
+            .modal-content p {
+                font-size: 0.9rem; /* Smaller text for better fit */
+                margin-bottom: 12px;
+            }
+
+            .modal-close {
+                font-size: 20px; /* Smaller close button */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                max-width: 95%;
+                padding: 10px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .modal-content p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.6s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #ff7b1d;
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            color: #ddd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="LOGO.jpg" alt="Polaeco Logo">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="nav-links">
+            <a href="Home.html">Home</a>
+            <a href="About.html">About</a>
+            <a target="_blank" href="Donate.html">Donate</a>
+            <a target="_blank" style="color: #ff7b1d;" href="News.html">News</a>
+            <a target="_blank" href="Merch.html">Merch</a>
+            <a target="_blank" href="Events.html">Events</a>
+            <a target="_blank" href="Contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="news-intro">
+        <h1>Latest News & Updates</h1>
+        <p>Stay informed about Polaeco's impactful initiatives and upcoming events. From empowering women through education to advancing sustainable solutions, our news section highlights the projects driving change in our community.<br><br>Explore the stories below to learn more about our missions in action!</p><br><br>
+    </section>
+
+    <section class="leadership-section">
+        <div class="gallery-item" onclick="openModal('item3', 'Upcoming Webinar', 'Polaeco is thrilled to host an upcoming webinar featuring distinguished speakers, including the SWEEP Chairperson, the EDHE Chairperson, and Lesego Lowu, a prominent advocate for leadership development.\nThis virtual event will bring together students, professionals, and community members to explore critical topics in leadership, entrepreneurship, and social impact.\nThe webinar will include interactive discussions, practical insights, and actionable strategies for fostering leadership skills in today’s dynamic world.\nAttendees will have the opportunity to engage directly with our speakers, gaining inspiration and knowledge to drive positive change in their communities.\nThis event underscores Polaeco’s mission to cultivate a new generation of leaders equipped to tackle societal challenges with innovation and compassion.\nStay tuned for registration details and event dates!')">
+            <img src="web.jpg" alt="Webinar"><h2>Upcoming Webinar</h2>
+        </div>   
+        <div class="gallery-item" onclick="openModal('item2', 'Biodegradable Pads', 'In a bold step toward addressing gender and environmental inequalities, Polaeco is launching an initiative to manufacture biodegradable sanitary pads.\nThis project seeks to provide women and girls in underserved communities with access to eco-friendly, affordable menstrual products, alleviating the financial and environmental burdens of traditional sanitary towels.\nBy producing these pads locally, we aim to create sustainable economic opportunities while promoting menstrual health and dignity.\nThe initiative will involve collaboration with local communities, environmental experts, and women’s advocacy groups to ensure the products meet high standards of sustainability and accessibility.\nThrough this endeavor, Polaeco is dedicated to breaking down barriers to menstrual equity and contributing to a greener, more inclusive future.')">
+            <img src="news1.jpg" alt="Biodegradable Pads"><h2>Biodegradable Pads</h2>
+        </div>
+        <div class="gallery-item" onclick="openModal('item1', 'TEFL Course Training', 'Polaeco is excited to launch our TEFL (Teaching English as a Foreign Language) Course Training Program, aimed at empowering 10 women with the skills and certification needed to excel in our mentorship initiatives.\nThis program specifically targets unemployed graduates with teaching degrees, addressing the challenge of unemployment while fostering leadership and community impact.\nBy equipping these women with TEFL qualifications, we aim to enhance their employability and enable them to contribute meaningfully to our mentorship programs, where they will guide and inspire the next generation of leaders.\nThe training will provide hands-on instruction, practical teaching experience, and ongoing support to ensure participants are well-prepared to make a difference.\nThis initiative reflects Polaeco’s commitment to education, empowerment, and sustainable career pathways for women in South Africa.')">
+            <img src="news3.jpg" alt="TEFL Course Training"><h2>TEFL Course Training</h2>
+        </div>
+        <div class="gallery-item" onclick="openModal('item4', 'Research Project', 'Polaeco is undertaking an impactful research project to investigate the transformative benefits of mentorship and its influence on developing effective leadership.\nThis study will explore how structured mentorship programs can empower individuals, particularly young women and students, to build confidence, resilience, and leadership skills.\nBy analyzing real-world case studies and collecting data from participants in Polaeco’s initiatives, the project aims to provide evidence-based insights that can shape future mentorship programs both locally and globally.\nThe findings will be shared with educational institutions, community organizations, and policymakers to advocate for the integration of mentorship into leadership development frameworks.\nThis research reflects Polaeco’s commitment to advancing knowledge and fostering leadership through mentorship.')">
+            <img src="web2.jpg" alt="Research Project"><h2>Research Project</h2>
+        </div>
+    </section>
+
+    <div class="modal" id="newsModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-description"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="social-media">
+            <a href="https://www.instagram.com/pc_polaeco_society/" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@nwu_pc_polaeco_society" target="_blank" class="social-icon">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="mailto:polaeco.projectsofficer@gmail.com" class="social-icon">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="Contact.html" class="social-icon">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+        </div>
+        <p class="footer-text">© 2025 Polaeco. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var nav = document.querySelector(".nav-links");
+            nav.classList.toggle("active");
+        }
+
+        function openModal(id, title, description) {
+            const modal = document.getElementById('newsModal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            modalTitle.textContent = title;
+            const paragraphs = description.split('\n').filter(p => p.trim() !== '');
+            modalDescription.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('newsModal');
+            modal.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
