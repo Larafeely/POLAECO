@@ -1570,7 +1570,6 @@
                 <a href="Merch.html" target="_blank"><img src="MERCH/7.jpg" alt="Merch Item 5"></a>
                 <div class="slide-caption">Hoodies</div>
             </div>
-            <!-- Duplicated slides for seamless looping -->
             <div class="slide">
                 <a href="Merch.html" target="_blank"><img src="MERCH/E.jpg" alt="Merch Item 3"></a>
                 <div class="slide-caption">Hoodies</div>
@@ -1677,7 +1676,7 @@
             currentQuote = (currentQuote + 1) % quotes.length;
             showQuote(currentQuote);
         }
-        showQuote(currentQuote);
+               showQuote(currentQuote);
         setInterval(nextQuote, 3000);
         let scrollPosition = 0;
         const galleryCards = document.getElementById('galleryCards');
