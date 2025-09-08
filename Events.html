@@ -509,7 +509,6 @@
         </div>
         <div class="event-list" id="event-list">
             <h3>Upcoming Events</h3>
-            <!-- Event list will be populated by JavaScript -->
         </div>
     </div>
      <footer class="footer">
@@ -564,15 +563,11 @@
                 dayElement.textContent = day;
                 grid.appendChild(dayElement);
             });
-
-            // Add empty days before the first of the month
             for (let i = 0; i < startingDay; i++) {
                 const emptyDay = document.createElement('div');
                 emptyDay.className = 'calendar-day';
                 grid.appendChild(emptyDay);
             }
-
-            // Add days of the month
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.className = 'calendar-day';
@@ -649,7 +644,6 @@
             }
         }
 
-        // Initial render
         renderCalendar();
     </script>
 </body>
